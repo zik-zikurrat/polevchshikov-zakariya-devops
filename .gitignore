@@ -1,0 +1,12 @@
+# Log files are generated at runtime and change constantly
+*.log
+
+# Local backups should not be stored in the repository
+backup/
+
+# Secrets and local environment settings (passwords, tokens)
+.env
+
+# Python cache
+__pycache__/
+*.pyc

@@ -1,0 +1,8 @@
+.git
+.gitignore
+logs/
+backup/
+.env
+jenkins/
+tests/
+*.log

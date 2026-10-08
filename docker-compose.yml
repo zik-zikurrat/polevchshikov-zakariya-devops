@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    image: polevchshikov-zakariya-devops
+    container_name: polevchshikov-zakariya-compose
+    environment:
+      STUDENT_NAME: Zakariya
+      STUDENT_SURNAME: Polevchshikov
+      STUDENT_GROUP: IT2-2312
+      STUDENT_ID: "37052"
+    ports:
+      - "8001:8000"
+    restart: unless-stopped

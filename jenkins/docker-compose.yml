@@ -1,0 +1,19 @@
+# Starts Jenkins locally: docker compose up -d --build  (from the jenkins/ folder)
+services:
+  jenkins:
+    build: .
+    image: polevchshikov-zakariya-jenkins
+    container_name: jenkins
+    user: root            # needed to use the host Docker socket
+    env_file: .env        # JENKINS_ADMIN_ID / JENKINS_ADMIN_PASSWORD (not in Git)
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ./casc.yaml:/var/jenkins_home/casc.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:

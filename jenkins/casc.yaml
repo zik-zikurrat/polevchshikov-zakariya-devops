@@ -1,0 +1,32 @@
+jenkins:
+  systemMessage: "Jenkins for Polevchshikov Zakariya (IT2-2312, ID 37052)"
+  numExecutors: 2
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "${JENKINS_ADMIN_ID}"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: true
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+jobs:
+  - script: >
+      pipelineJob('Polevchshikov_Zakariya_DevOps') {
+        description('DevOps lab pipeline: Checkout -> Build -> Test -> Docker Build -> Docker Run')
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote { url('https://github.com/zik-zikurrat/polevchshikov-zakariya-devops.git') }
+                branch('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+            lightweight(false)
+          }
+        }
+      }

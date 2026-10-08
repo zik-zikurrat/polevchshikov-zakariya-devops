@@ -1,0 +1,5 @@
+Name: Zakariya
+Surname: Polevchshikov
+Group: IT2-2312
+Student ID: 37052
+Course: DevOps

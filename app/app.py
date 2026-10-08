@@ -7,6 +7,8 @@ rebuilding the image.
 """
 
 import os
+import signal
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 LINE = "=" * 32
@@ -53,6 +55,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
+    # Stop quickly on `docker stop` (SIGTERM); PID 1 ignores it by default
+    signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))
     print(build_banner(get_student()), flush=True)
     port = int(os.environ.get("APP_PORT", "8000"))
     print(f"\nListening on port {port} (open http://localhost:{port})", flush=True)
